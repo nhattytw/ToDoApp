@@ -1,0 +1,101 @@
+﻿@model List<ToDoApp.Models.ToDoList>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Task/_LayoutPage1.cshtml";
+}
+
+
+@*<div class="container row p-0 m-0">*@
+<div class="form-horizontal">
+    <hr />
+    <h2 class="text-info">My Tasks</h2>
+    <hr />
+    <div class="border container  " style="padding: 20px">
+        <form method="get" action="/Task/Index" class="form-inline my-2 my-lg-0">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>TaskId</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Image</th>
+                        <th>Created On</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var task in Model)
+                    {
+                        <tr>
+                            <td>@task.ToDoID</td>
+                            <td>
+                                @Html.DisplayFor(modelItem => task.ToDoName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => task.ToDoDescription)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => task.Image)
+                            </td>
+                            <td>
+                                @task.CreationDate.ToString("dd/MMM/yyyy")
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => task.Priority)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => task.Status, "BoolIcon")
+                            </td>
+
+                            <td>
+                                <a href="/Task/Details/@task.ToDoID"
+                                   class="btn btn-outline-primary">
+                                    DETAILS
+                                </a>
+                            </td>
+                            <td>
+                                <a href="/Task/Edit/@task.ToDoID"
+                                   class="btn btn-outline-secondary">
+                                    EDIT
+                                </a>
+                            </td>
+                            <td>
+                                <a href="/Task/Delete/@task.ToDoID"
+                                   class="btn btn-outline-danger">
+                                    DELETE
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <hr />
+            <a href="/Task/Create/" class="btn btn-outline-success">
+                CREATE
+            </a>
+
+            @*<br /><hr /><hr />
+                <div class="mb-3 mt-3">
+                    <label>Availability:</label>
+                    <select name="AvailabilityStatus" id="AvailabilityStatus" class="form-select">
+                        <option value="InStock">In Stock</option>
+                        <option value="OutOfStock">Out of Stock</option>
+                    </select>
+                    <br />
+
+                    <label>Active:</label>
+                    <select name="Active" id="Active" class="form-select">
+                        <option value="true">True</option>
+                        <option value="false">False</option>
+                    </select>
+                    <br />
+                    </div>*@
+        </form>
+    </div>
+</div>
+         
